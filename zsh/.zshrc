@@ -16,4 +16,4 @@ fi
 
 # init zoxide
 eval "$(zoxide init zsh)"
-R
+
