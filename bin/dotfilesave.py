@@ -19,6 +19,9 @@ logger.setLevel(logging.DEBUG)
 DOTFILES_LOCATION = os.getenv("DOTFILES_SAVE_LOCATION", None)
 
 
+def move_files(source, target):
+    True
+
 def main():
 
     if DOTFILES_LOCATION is None:
