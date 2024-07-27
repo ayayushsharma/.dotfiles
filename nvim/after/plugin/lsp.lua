@@ -8,6 +8,7 @@ end)
 
 require('lspconfig').lua_ls.setup({})
 require('lspconfig').pylsp.setup({})
+require('lspconfig').tsserver.setup({})
 
 -- to learn how to use mason.nvim
 -- read this: https://github.com/VonHeikemen/lsp-zero.nvim/blob/v3.x/doc/md/guide/integrate-with-mason-nvim.md
