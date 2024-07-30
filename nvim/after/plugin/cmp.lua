@@ -11,12 +11,16 @@ cmp.setup({
 })
 
 cmp.setup({
-  mapping = cmp.mapping.preset.insert({
-    -- confirm completion
-    ['<tab>'] = cmp.mapping.confirm({select = true}),
+    mapping = cmp.mapping.preset.insert({
+        -- confirm completion
+        ['<tab>'] = cmp.mapping.confirm({ select = true }),
 
-    -- scroll up and down the documentation window
-    -- ['<C-u>'] = cmp.mapping.scroll_docs(-4),
-    -- ['<C-d>'] = cmp.mapping.scroll_docs(4),   
-  }),
+        -- scroll up and down the documentation window
+        -- ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        -- ['<C-d>'] = cmp.mapping.scroll_docs(4),
+    }),
+    window = {
+        completion = cmp.config.window.bordered(),
+        documentation = cmp.config.window.bordered(),
+    }
 })
