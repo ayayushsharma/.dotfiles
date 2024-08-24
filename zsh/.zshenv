@@ -1,3 +1,2 @@
-# Place holding file to setup environment for z start shell
-
-ulimit -s 8000
+ZDOTDIR=$HOME/.config/zsh
+. $ZDOTDIR/.zshenv

@@ -41,6 +41,11 @@ return require('packer').startup(function(use)
     use 'numToStr/Comment.nvim'
     use 'lewis6991/gitsigns.nvim'
     use 'windwp/nvim-ts-autotag'
+    use {
+        "p00f/cphelper.nvim",
+        requires = { { 'nvim-lua/plenary.nvim' } }
+    }
+    use "folke/neodev.nvim"
 end)
 
 
