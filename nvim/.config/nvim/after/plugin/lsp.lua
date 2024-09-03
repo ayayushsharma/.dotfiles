@@ -11,7 +11,15 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-    ensure_installed = { "lua_ls", "pylsp", "tsserver", "snyk_ls", "clangd", "gopls" }
+    ensure_installed = {
+        "lua_ls",
+        "pylsp",
+        "tsserver",
+        "snyk_ls",
+        "clangd",
+        "gopls",
+        "cssls"
+    }
 })
 
 require('lspconfig').lua_ls.setup({
@@ -51,6 +59,7 @@ require('lspconfig').pylsp.setup({})
 require('lspconfig').tsserver.setup({})
 require('lspconfig').clangd.setup({})
 require('lspconfig').gopls.setup({})
+require('lspconfig').cssls.setup({})
 
 
 -- setting up snyk for code testing
