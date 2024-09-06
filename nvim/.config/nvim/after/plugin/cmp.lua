@@ -1,13 +1,14 @@
 local cmp = require('cmp')
-local cmp_format = require('lsp-zero').cmp_format({details = true})
+local cmp_format = require('lsp-zero').cmp_format({ details = true })
 
 cmp.setup({
-  sources = {
-    {name = 'nvim_lsp'},
-    {name = 'buffer'},
-  },
-  --- (Optional) Show source name in completion menu
-  formatting = cmp_format,
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'buffer' },
+        { name = 'orgmode' },
+    },
+    --- (Optional) Show source name in completion menu
+    formatting = cmp_format,
 })
 
 cmp.setup({

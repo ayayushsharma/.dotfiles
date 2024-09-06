@@ -56,7 +56,7 @@ require('lspconfig').lua_ls.setup({
     }
 })
 require('lspconfig').pylsp.setup({})
-require('lspconfig').tsserver.setup({})
+require('lspconfig').ts_ls.setup({})
 require('lspconfig').clangd.setup({})
 require('lspconfig').gopls.setup({})
 require('lspconfig').cssls.setup({})
