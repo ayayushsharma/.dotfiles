@@ -47,5 +47,17 @@ return require('packer').startup(function(use)
     }
     use "folke/neodev.nvim"
     use "norcalli/nvim-colorizer.lua"
-    use "nvim-orgmode/orgmode"
+    use "vhyrro/luarocks.nvim"
+
+    use {
+        "nvim-neorg/neorg",
+        requires = {
+            { "nvim-neorg/lua-utils.nvim" },
+            { "nvim-neotest/nvim-nio" },
+            { "MunifTanjim/nui.nvim" },
+            { "nvim-lua/plenary.nvim" },
+            { "pysan3/pathlib.nvim" }
+        },
+        tag = "*" -- Pin Neorg to the latest stable release
+    }
 end)
