@@ -41,14 +41,9 @@ return require('packer').startup(function(use)
     use 'numToStr/Comment.nvim'
     use 'lewis6991/gitsigns.nvim'
     use 'windwp/nvim-ts-autotag'
-    use {
-        "p00f/cphelper.nvim",
-        requires = { { 'nvim-lua/plenary.nvim' } }
-    }
     use "folke/neodev.nvim"
     use "norcalli/nvim-colorizer.lua"
     use "vhyrro/luarocks.nvim"
-
     use {
         "nvim-neorg/neorg",
         requires = {
@@ -59,5 +54,9 @@ return require('packer').startup(function(use)
             { "pysan3/pathlib.nvim" }
         },
         tag = "*" -- Pin Neorg to the latest stable release
+    }
+    use {
+        'xeluxee/competitest.nvim',
+        requires = 'MunifTanjim/nui.nvim',
     }
 end)
