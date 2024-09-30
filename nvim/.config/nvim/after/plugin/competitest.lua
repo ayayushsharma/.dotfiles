@@ -84,14 +84,14 @@ require('competitest').setup {
     compile_directory = ".",
     compile_command = {
         c = { exec = "gcc", args = { "-Wall", "$(FNAME)", "-o", "$(FNOEXT)" } },
-        cpp = { exec = "g++", args = { "-Wall", "-std=c++20", "-DLOCAL", "$(FNAME)", "-o", "$(FNOEXT)" } },
+        cpp = { exec = "g++", args = { "-std=c++20", "-DLOCAL", "$(FNAME)", "-o", "$(FNOEXT).out" } },
         rust = { exec = "rustc", args = { "$(FNAME)" } },
         java = { exec = "javac", args = { "$(FNAME)" } },
     },
     running_directory = ".",
     run_command = {
         c = { exec = "./$(FNOEXT)" },
-        cpp = { exec = "./$(FNOEXT)" },
+        cpp = { exec = "./$(FNOEXT).out" },
         rust = { exec = "./$(FNOEXT)" },
         python = { exec = "python", args = { "$(FNAME)" } },
         java = { exec = "java", args = { "$(FNOEXT)" } },
