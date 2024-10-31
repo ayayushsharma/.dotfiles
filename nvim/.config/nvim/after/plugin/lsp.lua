@@ -1,4 +1,5 @@
 local lsp_zero = require('lsp-zero')
+local lspconfig = require('lspconfig')
 
 lsp_zero.on_attach(function(client, bufnr)
     -- see :help lsp-zero-keybindings
@@ -15,6 +16,7 @@ require('mason-lspconfig').setup({
         "lua_ls",
         "pylsp",
         "ts_ls",
+        "denols",
         "snyk_ls",
         "clangd",
         "gopls",
@@ -22,7 +24,7 @@ require('mason-lspconfig').setup({
     }
 })
 
-require('lspconfig').lua_ls.setup({
+lspconfig.lua_ls.setup({
     on_init = function(client)
         local path = client.workspace_folders[1].name
         if vim.loop.fs_stat(path .. '/.luarc.json') or vim.loop.fs_stat(path .. '/.luarc.jsonc') then
@@ -55,18 +57,26 @@ require('lspconfig').lua_ls.setup({
         Lua = {}
     }
 })
-require('lspconfig').pylsp.setup({})
-require('lspconfig').ts_ls.setup({})
-require('lspconfig').clangd.setup({})
-require('lspconfig').gopls.setup({})
-require('lspconfig').cssls.setup({})
 
+lspconfig.pylsp.setup({})
+lspconfig.clangd.setup({})
+lspconfig.gopls.setup({})
+lspconfig.cssls.setup({})
+lspconfig.denols.setup {
+  on_attach = on_attach,
+  root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+}
+lspconfig.ts_ls.setup {
+  on_attach = on_attach,
+  root_dir = lspconfig.util.root_pattern("package.json"),
+  single_file_support = false
+}
 
 -- setting up snyk for code testing
 local snyk_token = os.getenv("SNYK_TOKEN")
 HOME_DIR = os.getenv("HOME")
 if snyk_token then
-    require('lspconfig').snyk_ls.setup({
+    lspconfig.snyk_ls.setup({
         init_options = {
             ["token"] = snyk_token,
             ["authenticationMethod"] = "token",
