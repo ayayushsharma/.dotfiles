@@ -20,3 +20,8 @@ fi
 # init zoxide
 eval "$(zoxide init zsh)"
 
+if [ -f ~/.env ]; then 
+    . ~/.env
+fi
+
+
