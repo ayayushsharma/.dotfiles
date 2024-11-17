@@ -1,6 +1,18 @@
 local lsp_zero = require('lsp-zero')
 local lspconfig = require('lspconfig')
 
+--- Check if a file or directory exists in this path
+local function exists(file)
+    local ok, err, code = os.rename(file, file)
+    if not ok then
+        if code == 13 then
+            -- Permission denied, but it exists
+            return true
+        end
+    end
+    return ok, err
+end
+
 lsp_zero.on_attach(function(client, bufnr)
     -- see :help lsp-zero-keybindings
     -- to learn the available actions
@@ -62,14 +74,35 @@ lspconfig.pylsp.setup({})
 lspconfig.clangd.setup({})
 lspconfig.gopls.setup({})
 lspconfig.cssls.setup({})
-lspconfig.denols.setup {
-  on_attach = on_attach,
-  root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
-}
+
+local deno_root = vim.fs.root(0, { "deno.json", "deno.jsonc" })
+if deno_root then
+    local config_file = exists(deno_root .. "/deno.json") and
+        deno_root .. "/deno.json" or
+        deno_root .. "deno.jsonc"
+    lspconfig.denols.setup {
+        on_attach = on_attach,
+        root_dir = lspconfig.util.root_pattern("deno.json", "deno.jsonc"),
+        settings = {
+            deno = {
+                enable = true,
+                config = config_file,
+                suggest = {
+                    autoImports = true,
+                    imports = {
+                        hosts = {
+                            ["https://deno.land"] = true
+                        }
+                    }
+                }
+            }
+        }
+    }
+end
 lspconfig.ts_ls.setup {
-  on_attach = on_attach,
-  root_dir = lspconfig.util.root_pattern("package.json"),
-  single_file_support = false
+    on_attach = on_attach,
+    root_dir = lspconfig.util.root_pattern("package.json"),
+    single_file_support = false
 }
 
 -- setting up snyk for code testing
