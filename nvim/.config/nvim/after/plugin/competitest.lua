@@ -1,3 +1,21 @@
+local function get_local_sim_state(online_sim_state)
+    online_sim_state = tonumber(online_sim_state)
+    if online_sim_state == 0 then
+        return "1"
+    else
+        return "0"
+    end
+end
+
+
+local online_simulation_state = os.getenv("ONLINE_SIM")
+local complication_macro_flag="-DLOCAL"
+if online_simulation_state then
+    local local_sim = get_local_sim_state(online_simulation_state)
+    print("Simulation local state", local_sim)
+    complication_macro_flag = "-DLOCAL=" ..tostring(local_sim)
+end
+
 require('competitest').setup {
     floating_border = "rounded",
     floating_border_highlight = "FloatBorder",
@@ -84,7 +102,7 @@ require('competitest').setup {
     compile_directory = ".",
     compile_command = {
         c = { exec = "gcc", args = { "-Wall", "$(FNAME)", "-o", "$(FNOEXT)" } },
-        cpp = { exec = "g++", args = { "-std=c++20", "-DLOCAL", "$(FNAME)", "-o", "$(FNOEXT).out" } },
+        cpp = { exec = "g++", args = { "-std=c++20", complication_macro_flag, "$(FNAME)", "-o", "$(FNOEXT).out" } },
         rust = { exec = "rustc", args = { "$(FNAME)" } },
         java = { exec = "javac", args = { "$(FNAME)" } },
     },
