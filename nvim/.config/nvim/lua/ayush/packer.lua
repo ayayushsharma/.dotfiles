@@ -59,4 +59,5 @@ return require('packer').startup(function(use)
         'xeluxee/competitest.nvim',
         requires = 'MunifTanjim/nui.nvim',
     }
+    use "meznaric/key-analyzer.nvim"
 end)
