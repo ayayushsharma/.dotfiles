@@ -24,4 +24,5 @@ if [ -f ~/.env ]; then
     . ~/.env
 fi
 
-
+# always aliases
+alias lint_py="pylint -r y -s y \`git diff --name-only --staged --diff-filter=d | grep -E '\.py$' | tr '\n' ' '\`"
