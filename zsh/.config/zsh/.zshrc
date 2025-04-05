@@ -1,6 +1,12 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
+
+if [ ! -d $ZSH ]; then
+    echo "Installing Oh My Zsh"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+fi
+
 ZSH_THEME="candy"
 
 HYPHEN_INSENSITIVE="true"
