@@ -38,7 +38,6 @@ return {
         require("mason-lspconfig").setup({
             ensure_installed = {
                 "lua_ls",
-                "gopls",
                 "snyk_ls",
                 "ts_ls",
                 "denols",
