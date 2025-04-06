@@ -4,7 +4,7 @@ export ZSH="$HOME/.oh-my-zsh"
 
 if [ ! -d $ZSH ]; then
     echo "Installing Oh My Zsh"
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+    git clone https://github.com/ohmyzsh/ohmyzsh.git $ZSH
 fi
 
 ZSH_THEME="candy"
