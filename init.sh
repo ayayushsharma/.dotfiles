@@ -7,6 +7,7 @@ fi
 
 echo "Creating Symlinks - started"
 cd ~/.dotfiles
+git pull --rebase
 
 stow nvim
 stow zsh

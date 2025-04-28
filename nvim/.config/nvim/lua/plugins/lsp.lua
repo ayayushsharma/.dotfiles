@@ -42,7 +42,6 @@ return {
                 "ts_ls",
                 "denols",
                 "clangd",
-                "gopls",
                 "cssls",
                 "pylsp",
             },
