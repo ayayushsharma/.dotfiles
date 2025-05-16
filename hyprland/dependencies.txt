@@ -1,0 +1,5 @@
+hyprland
+hyprpaper
+brightnessctl
+wl-clipboard
+
