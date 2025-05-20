@@ -35,14 +35,14 @@ alias lint_py="pylint -r y -s y \`git diff --name-only --staged --diff-filter=d 
 
 # custom functions
 ff() {
-    dir_name=$(find . -type d -print | fzf)
+    dir_name=$(find . -type d \( -name node_modules -o -name .git -o -name .venv \) -prune -o -name '*' -type d -print | fzf)
     if [ -n $dir_name ]; then
         cd $dir_name
     fi
 }
 
 fhf() {
-    dir_name=$(find ~ -type d -print | fzf)
+    dir_name=$(find ~ -type d \( -name node_modules -o -name .git -o -name .venv \) -prune -o -name '*' -type d -print | fzf)
     if [ -n "$dir_name" ]; then
         cd "$dir_name"
     fi
