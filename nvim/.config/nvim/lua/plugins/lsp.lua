@@ -109,6 +109,17 @@ return {
                         single_file_support = false,
                     })
                 end,
+                ["terraformls"] = function()
+                    local lspconfig = require('lspconfig')
+                    lspconfig.terraformls.setup({
+                        on_attach = function(client, bufnr)
+                            -- Custom handler to ignore errors
+                            vim.lsp.handlers["textDocument/publishDiagnostics"] = function(_, result, ctx, config)
+                                if not result then return end
+                            end
+                        end
+                    })
+                end,
             },
         })
 

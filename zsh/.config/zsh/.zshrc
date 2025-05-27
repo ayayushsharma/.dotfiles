@@ -39,7 +39,42 @@ ff() {
 }
 
 fhf() {
-    dir_name=$(find ~ -type d \( -name node_modules -o -name .git -o -name .venv \) -prune -o -name '*' -type d -print | fzf)
+    dir_name=$(                        \
+        find ~                         \
+        -type d                        \
+        \(                             \
+            -name node_modules -o      \
+            -name pkg -o               \
+            -name __pycache__ -o       \
+            -name .git -o              \
+            -name .config -o           \
+            -name .venv                \
+        \)                             \
+        -prune -o -name '*'            \
+        -type d                        \
+        -print | fzf                   \
+    )
+    if [ -n "$dir_name" ]; then
+        cd "$dir_name"
+    fi
+}
+
+fpf() {
+    dir_name=$(                        \
+        find ~/projects                \
+        -type d                        \
+        \(                             \
+            -name node_modules -o      \
+            -name pkg -o               \
+            -name __pycache__ -o       \
+            -name .git -o              \
+            -name .config -o           \
+            -name .venv                \
+        \)                             \
+        -prune -o -name '*'            \
+        -type d                        \
+        -print | fzf                   \
+    )
     if [ -n "$dir_name" ]; then
         cd "$dir_name"
     fi
