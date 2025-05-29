@@ -1,0 +1,9 @@
+hyprland
+hyprpaper
+brightnessctl
+wl-clipboard
+rofi-wayland
+waybar
+kitty
+blueman
+sddm
