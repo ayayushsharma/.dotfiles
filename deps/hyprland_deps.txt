@@ -6,3 +6,4 @@ rofi-wayland
 waybar
 kitty
 blueman
+sddm
