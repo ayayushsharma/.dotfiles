@@ -106,6 +106,10 @@ alias l='ls -lah'
 alias ll='ls -lh'
 alias la='ls -lAh'
 
+bindkey '\eOA' history-beginning-search-backward
+bindkey '\e[A' history-beginning-search-backward
+bindkey '\eOB' history-beginning-search-forward
+bindkey '\e[B' history-beginning-search-forward
 #########################################
 # custom functions
 #########################################
