@@ -1,0 +1,49 @@
+fhf() {
+    dir_name=$(                        \
+        find ~                         \
+        -type d                        \
+        \(                             \
+            -name node_modules -o      \
+            -name pkg -o               \
+            -name __pycache__ -o       \
+            -name .git -o              \
+            -name .config -o           \
+            -name .venv                \
+        \)                             \
+        -prune -o -name '*'            \
+        -type d                        \
+        -print | fzf                   \
+    )
+    if [ -n "$dir_name" ]; then
+        cd "$dir_name"
+    fi
+}
+
+base_fpf() {
+    dir_name=$(                        \
+        find ~/projects                \
+        -type d                        \
+        \(                             \
+            -name node_modules -o      \
+            -name pkg -o               \
+            -name __pycache__ -o       \
+            -name .git -o              \
+            -name .config -o           \
+            -name .venv                \
+        \)                             \
+        -prune -o -name '*'            \
+        -type d                        \
+        -print | fzf                   \
+    )
+
+    echo "$dir_name"
+}
+
+fpf() {
+    dir_name=$(base_fpf)
+    if [ -n "$dir_name" ]; then
+        cd "$dir_name"
+    fi
+}
+
+alias lint_py="pylint -r y -s y \`git diff --name-only --staged --diff-filter=d | grep -E '\.py$' | tr '\n' ' '\`"

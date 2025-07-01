@@ -113,65 +113,6 @@ bindkey '\e[B' history-beginning-search-forward
 #########################################
 # custom functions
 #########################################
-ff() {
-    dir_name=$(                        \
-        find .                         \
-        -type d                        \
-        \(                             \
-            -name node_modules -o      \
-            -name .git -o              \
-            -name .venv                \
-        \)                             \
-        -prune -o -name '*'            \
-        -type d                        \
-        -print | fzf                   \
-    )
-    if [ -n $dir_name ]; then
-        cd $dir_name
-    fi
-}
+. $ZDOTDIR/.zsh_functions
 
-fhf() {
-    dir_name=$(                        \
-        find ~                         \
-        -type d                        \
-        \(                             \
-            -name node_modules -o      \
-            -name pkg -o               \
-            -name __pycache__ -o       \
-            -name .git -o              \
-            -name .config -o           \
-            -name .venv                \
-        \)                             \
-        -prune -o -name '*'            \
-        -type d                        \
-        -print | fzf                   \
-    )
-    if [ -n "$dir_name" ]; then
-        cd "$dir_name"
-    fi
-}
-
-fpf() {
-    dir_name=$(                        \
-        find ~/projects                \
-        -type d                        \
-        \(                             \
-            -name node_modules -o      \
-            -name pkg -o               \
-            -name __pycache__ -o       \
-            -name .git -o              \
-            -name .config -o           \
-            -name .venv                \
-        \)                             \
-        -prune -o -name '*'            \
-        -type d                        \
-        -print | fzf                   \
-    )
-    if [ -n "$dir_name" ]; then
-        cd "$dir_name"
-    fi
-}
-
-alias lint_py="pylint -r y -s y \`git diff --name-only --staged --diff-filter=d | grep -E '\.py$' | tr '\n' ' '\`"
-
+bindkey -s ^f "tmux-sessionizer\n"
