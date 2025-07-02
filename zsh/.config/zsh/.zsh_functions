@@ -20,20 +20,23 @@ fhf() {
 }
 
 base_fpf() {
-    dir_name=$(                        \
-        find ~/projects                \
-        -type d                        \
-        \(                             \
-            -name node_modules -o      \
-            -name pkg -o               \
-            -name __pycache__ -o       \
-            -name .git -o              \
-            -name .config -o           \
-            -name .venv                \
-        \)                             \
-        -prune -o -name '*'            \
-        -type d                        \
-        -print | fzf                   \
+    dir_name=$(                            \
+        {                                  \
+            find ~/projects                \
+            -type d                        \
+            \(                             \
+                -name node_modules -o      \
+                -name pkg -o               \
+                -name __pycache__ -o       \
+                -name .git -o              \
+                -name .venv                \
+            \)                             \
+            -prune -o -name '*'            \
+            -type d                        \
+            -print;                        \
+            echo "$HOME/todo";             \
+            echo "$HOME/scripts"           \
+        } | fzf                            \
     )
 
     echo "$dir_name"
