@@ -7,3 +7,4 @@ waybar
 kitty
 blueman
 sddm
+fzf
