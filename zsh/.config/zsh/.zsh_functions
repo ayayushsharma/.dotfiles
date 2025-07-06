@@ -22,6 +22,8 @@ fhf() {
 base_fpf() {
     dir_name=$(                            \
         {                                  \
+            echo "$HOME/todo";             \
+            echo "$HOME/scripts";          \
             find ~/projects                \
             -type d                        \
             \(                             \
@@ -34,8 +36,6 @@ base_fpf() {
             -prune -o -name '*'            \
             -type d                        \
             -print;                        \
-            echo "$HOME/todo";             \
-            echo "$HOME/scripts"           \
         } | fzf                            \
     )
 
