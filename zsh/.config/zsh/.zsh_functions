@@ -25,6 +25,7 @@ base_fpf() {
             echo "$HOME/todo";             \
             echo "$HOME/scripts";          \
             find ~/projects                \
+            -maxdepth 3                    \
             -type d                        \
             \(                             \
                 -name node_modules -o      \
