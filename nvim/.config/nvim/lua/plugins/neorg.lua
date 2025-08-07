@@ -3,7 +3,7 @@ return {
     lazy = false,
     version = "*",
     config = function()
-        HOME_DIR = os.getenv("HOME")
+        home = os.getenv("HOME")
         require("neorg").setup({
             load = {
                 ["core.defaults"] = {},
@@ -15,7 +15,7 @@ return {
                 ["core.dirman"] = {
                     config = {
                         workspaces = {
-                            todo = HOME_DIR .. "/todo",
+                            todo = home .. "/todo",
                         },
                     },
                 },

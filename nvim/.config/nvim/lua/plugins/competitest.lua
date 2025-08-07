@@ -109,7 +109,13 @@ return {
                 c = { exec = "gcc", args = { "-Wall", "$(FNAME)", "-o", "$(FNOEXT)" } },
                 cpp = {
                     exec = "g++",
-                    args = { "-std=c++17", complication_macro_flag, "$(FNAME)", "-o", "$(FNOEXT).out" },
+                    args = {
+                        "-std=c++17",
+                        complication_macro_flag,
+                        "$(FNAME)",
+                        "-o",
+                        "$(FNOEXT).out",
+                    },
                 },
                 rust = { exec = "rustc", args = { "$(FNAME)" } },
                 java = { exec = "javac", args = { "$(FNAME)" } },
