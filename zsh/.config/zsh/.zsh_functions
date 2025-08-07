@@ -1,45 +1,12 @@
-fhf() {
-    dir_name=$(                        \
-        find ~                         \
-        -type d                        \
-        \(                             \
-            -name node_modules -o      \
-            -name pkg -o               \
-            -name __pycache__ -o       \
-            -name .git -o              \
-            -name .config -o           \
-            -name .venv                \
-        \)                             \
-        -prune -o -name '*'            \
-        -type d                        \
-        -print | fzf                   \
-    )
-    if [ -n "$dir_name" ]; then
-        cd "$dir_name"
-    fi
-}
-
 base_fpf() {
-    dir_name=$(                            \
-        {                                  \
-            echo "$HOME/todo";             \
-            echo "$HOME/scripts";          \
-            find ~/projects                \
-            -maxdepth 2                    \
-            -type d                        \
-            \(                             \
-                -name node_modules -o      \
-                -name pkg -o               \
-                -name __pycache__ -o       \
-                -name .git -o              \
-                -name .venv                \
-            \)                             \
-            -prune -o -name '*'            \
-            -type d                        \
-            -print;                        \
-        } | fzf                            \
+    dir_name=$(
+        {
+            echo "$HOME/todo"
+            echo "$HOME/scripts"
+            echo "$HOME/.dotfiles"
+            find ~/projects -maxdepth 2 -type d -print
+        } | fzf
     )
-
     echo "$dir_name"
 }
 
