@@ -1,9 +1,15 @@
 #!/usr/bin/env bash
 
 languages=`echo "python cpp c typescript lua nodejs golang" | tr ' ' '\n'`
-core_utils=`echo "xargs find sed awk" | tr ' ' '\n'`
+core_utils=`echo "xargs find sed awk parallel tee tr" | tr ' ' '\n'`
 
 selected=`printf "$languages\n$core_utils" | fzf`
+
+if [ ! -n "$selected" ]; then
+    exit 0
+fi
+
+echo "$selected"
 read -p "query: " query
 
 if printf $languages | grep -qs $selected; then

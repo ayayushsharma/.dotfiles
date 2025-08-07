@@ -6,6 +6,11 @@ else
     branch_name=$(git for-each-ref --format='%(refname:short)' refs/heads/ | fzf | tr -d ' ')
 fi
 
+if [[ $* == *-n* ]]; then
+    echo "$branch_name"
+    exit 0
+fi
+
 if [ -n "$branch_name" ]; then
     git checkout "$branch_name"
 fi
