@@ -106,12 +106,6 @@ return {
             cmp_lsp.default_capabilities()
         )
 
-        require("fidget").setup({
-            notification = {
-                filter = vim.log.levels.WARN,
-            },
-        })
-
         require("mason").setup()
 
         require("mason-lspconfig").setup({
@@ -201,5 +195,20 @@ return {
                 vim.keymap.set("n", "<F4>", "<cmd>lua vim.lsp.buf.code_action()<cr>", opts)
             end,
         })
+
+        local fidget = require("fidget")
+        vim.lsp.handlers["window/showMessage"] = function(_, result, ctx)
+            local client = vim.lsp.get_client_by_id(ctx.client_id)
+            local level = ({
+                "ERROR",
+                "WARN",
+                "INFO",
+                "DEBUG",
+            })[result.type] or "INFO"
+            fidget.notify(
+                string.format("LSP[%s] %s", client and client.name or "?", result.message),
+                vim.log.levels[level]
+            )
+        end
     end,
 }
