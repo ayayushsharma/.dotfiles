@@ -38,16 +38,17 @@ function SYNK_LS()
     local snyk_token = os.getenv("SNYK_TOKEN")
     local home = os.getenv("HOME")
     if snyk_token then
-        lspconfig.snyk_ls.setup({
-            init_options = {
-                ["token"] = snyk_token,
-                ["authenticationMethod"] = "token",
-                ["activateSnykIac"] = "false",
-                ["trustedFolders"] = {
-                    home .. "/projects",
-                },
-            },
-        })
+        return
+        -- lspconfig.snyk_ls.setup({
+        --     init_options = {
+        --         ["token"] = snyk_token,
+        --         ["authenticationMethod"] = "token",
+        --         ["activateSnykIac"] = "false",
+        --         ["trustedFolders"] = {
+        --             home .. "/projects",
+        --         },
+        --     },
+        -- })
     end
 end
 
