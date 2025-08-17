@@ -1,3 +1,56 @@
+---List language servers to install
+---@return elem_or_list
+function INSTALLED_LANGUAGES()
+    ---Returns true if language env var is available
+    ---in form "IS_INSTALLED_<LANG>"
+    ---@param language string
+    ---@return boolean
+    local function lang_is_installed(language)
+        language = string.upper(language)
+        local env_var = "IS_INSTALLED_" .. language
+        local env_value = os.getenv(env_var)
+        if env_value == nil then
+            return false
+        end
+        return true
+    end
+
+    local lsp_to_install = {
+        "lua_ls",
+    }
+
+    if lang_is_installed("python3") then
+        table.insert(lsp_to_install, "pylsp")
+    end
+
+    if lang_is_installed("node") then
+        table.insert(lsp_to_install, "cssls")
+        table.insert(lsp_to_install, "ts_ls")
+    end
+
+    if lang_is_installed("cpp") then
+        table.insert(lsp_to_install, "clangd")
+    end
+
+    if lang_is_installed("deno") then
+        table.insert(lsp_to_install, "denols")
+    end
+
+    if lang_is_installed("go") then
+        table.insert(lsp_to_install, "gopls")
+    end
+
+    if lang_is_installed("rust") then
+        table.insert(lsp_to_install, "rust_analyzer")
+    end
+
+    if os.getenv("SNYK_TOKEN") ~= nil then
+        table.insert(lsp_to_install, "snyk_ls")
+    end
+
+    return lsp_to_install
+end
+
 function LUA_LS()
     local lspconfig = require("lspconfig")
     local home = os.getenv("HOME")
@@ -38,17 +91,16 @@ function SYNK_LS()
     local snyk_token = os.getenv("SNYK_TOKEN")
     local home = os.getenv("HOME")
     if snyk_token then
-        return
-        -- lspconfig.snyk_ls.setup({
-        --     init_options = {
-        --         ["token"] = snyk_token,
-        --         ["authenticationMethod"] = "token",
-        --         ["activateSnykIac"] = "false",
-        --         ["trustedFolders"] = {
-        --             home .. "/projects",
-        --         },
-        --     },
-        -- })
+        lspconfig.snyk_ls.setup({
+            init_options = {
+                ["token"] = snyk_token,
+                ["authenticationMethod"] = "token",
+                ["activateSnykIac"] = "false",
+                ["trustedFolders"] = {
+                    home .. "/projects",
+                },
+            },
+        })
     end
 end
 
@@ -110,15 +162,7 @@ return {
         require("mason").setup()
 
         require("mason-lspconfig").setup({
-            ensure_installed = {
-                "lua_ls",
-                "snyk_ls",
-                "ts_ls",
-                "denols",
-                "clangd",
-                "cssls",
-                "pylsp",
-            },
+            ensure_installed = INSTALLED_LANGUAGES(),
             handlers = {
                 function(server_name)
                     require("lspconfig")[server_name].setup({
