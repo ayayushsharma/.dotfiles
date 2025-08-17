@@ -54,6 +54,29 @@ end
 function LUA_LS()
     local lspconfig = require("lspconfig")
     local home = os.getenv("HOME")
+
+    local function vim_library()
+        local runtime = {
+            vim.env.VIMRUNTIME,
+            vim.api.nvim_get_runtime_file("", true),
+        }
+
+        local plugin_path = home .. "/.local/share/nvim/lazy"
+        local plugins = vim.fn.globpath(plugin_path, "*/lua/", false, true)
+
+        local final_list = {}
+        for _, value in ipairs(plugins) do
+            table.insert(final_list, tostring(value):sub(1, -2))
+        end
+        for _,value in ipairs(runtime) do
+            table.insert(final_list, value)
+        end
+
+        return final_list
+    end
+
+    -- vim_library()
+
     lspconfig.lua_ls.setup({
         on_init = function(client)
             local path = client.workspace_folders[1].name
@@ -70,12 +93,7 @@ function LUA_LS()
                     },
                     workspace = {
                         checkThirdParty = false,
-                        library = {
-                            vim.env.VIMRUNTIME,
-                            vim.env.PACKER_PLUGIN_PATH,
-                            home .. "/.local/share/nvim/lazy/",
-                            vim.api.nvim_get_runtime_file("", true),
-                        },
+                        library = vim_library(),
                     },
                 })
             )
