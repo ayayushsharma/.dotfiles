@@ -17,13 +17,13 @@ return {
                     "__pycache__",
                     ".venv",
                     ".git",
-                }
+                },
             },
             pickers = {
                 find_files = {
-                    hidden = true
-                }
-            }
+                    hidden = true,
+                },
+            },
         })
     end,
 }
