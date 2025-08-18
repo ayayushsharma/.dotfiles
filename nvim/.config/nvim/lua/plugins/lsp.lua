@@ -269,7 +269,7 @@ return {
                     end
                 end
 
-                if currentLine > 0 then
+                if #currentLine > 0 then
                     table.insert(lines, table.concat(currentLine, " "))
                 end
 
