@@ -51,33 +51,9 @@ function INSTALLED_LANGUAGES()
     return lsp_to_install
 end
 
+---inits Lua Language server
 function LUA_LS()
-    local lspconfig = require("lspconfig")
-    local home = os.getenv("HOME")
-
-    local function vim_library()
-        local runtime = {
-            vim.env.VIMRUNTIME,
-            vim.api.nvim_get_runtime_file("", true),
-        }
-
-        local plugin_path = home .. "/.local/share/nvim/lazy"
-        local plugins = vim.fn.globpath(plugin_path, "*/lua/", false, true)
-
-        local final_list = {}
-        for _, value in ipairs(plugins) do
-            table.insert(final_list, tostring(value):sub(1, -2))
-        end
-        for _,value in ipairs(runtime) do
-            table.insert(final_list, value)
-        end
-
-        return final_list
-    end
-
-    -- vim_library()
-
-    lspconfig.lua_ls.setup({
+    require("lspconfig").lua_ls.setup({
         on_init = function(client)
             local path = client.workspace_folders[1].name
             if
@@ -93,7 +69,10 @@ function LUA_LS()
                     },
                     workspace = {
                         checkThirdParty = false,
-                        library = vim_library(),
+                        library = {
+                            vim.env.VIMRUNTIME,
+                            vim.api.nvim_get_runtime_file("", true),
+                        },
                     },
                 })
             )
@@ -104,12 +83,12 @@ function LUA_LS()
     })
 end
 
+---inits Snyk Language Server
 function SYNK_LS()
-    local lspconfig = require("lspconfig")
     local snyk_token = os.getenv("SNYK_TOKEN")
     local home = os.getenv("HOME")
     if snyk_token then
-        lspconfig.snyk_ls.setup({
+        require("lspconfig").snyk_ls.setup({
             init_options = {
                 ["token"] = snyk_token,
                 ["authenticationMethod"] = "token",
@@ -122,6 +101,7 @@ function SYNK_LS()
     end
 end
 
+---inits deno language server
 function DENOLS()
     local lspconfig = require("lspconfig")
     lspconfig.ts_ls.setup({
@@ -130,14 +110,14 @@ function DENOLS()
     })
 end
 
+---inits terraform language server
 function TERRAFORMLS()
-    local lspconfig = require("lspconfig")
     local function early_return(_, result, ctx, config)
         if not result then
             return
         end
     end
-    lspconfig.terraformls.setup({
+    require("lspconfig").terraformls.setup({
         on_attach = function(client, bufnr)
             vim.lsp.handlers["textDocument/publishDiagnostics"] = early_return
         end,
@@ -268,8 +248,36 @@ return {
                 "INFO",
                 "DEBUG",
             })[result.type] or "INFO"
+
+            ---Splits line into 2 parts after N characters
+            ---@param line string
+            ---@param character_limit number|nil
+            ---@return unknown
+            local function reformat(line, character_limit)
+                character_limit = character_limit or 40
+                local lines = {}
+                local currentLine = {}
+                local character_count = 0
+
+                for word in line:gmatch("%S+") do
+                    character_count = character_count + string.len(word)
+                    table.insert(currentLine, word)
+                    if character_count / character_limit > 1 then
+                        table.insert(lines, table.concat(currentLine, " "))
+                        currentLine = {}
+                        character_count = 0
+                    end
+                end
+
+                if currentLine > 0 then
+                    table.insert(lines, table.concat(currentLine, " "))
+                end
+
+                return table.concat(lines, "\n")
+            end
+
             fidget.notify(
-                string.format("LSP[%s] %s", client and client.name or "?", result.message),
+                reformat(string.format("LSP[%s] %s", client and client.name or "?", result.message)),
                 vim.log.levels[level]
             )
         end

@@ -3,7 +3,7 @@ return {
     lazy = false,
     version = "*",
     config = function()
-        home = os.getenv("HOME")
+        local home = os.getenv("HOME")
         require("neorg").setup({
             load = {
                 ["core.defaults"] = {},
