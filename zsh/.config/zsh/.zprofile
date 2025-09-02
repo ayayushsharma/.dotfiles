@@ -2,9 +2,10 @@ export PATH=/usr/local/bin:$PATH
 export PATH=$HOME/.dotfiles/bin:$PATH
 export PATH=$HOME/.deno/bin:$PATH
 export PATH=$HOME/scripts:$PATH
+export PATH=/opt/homebrew/opt/openjdk/bin:$PATH
 
 export DOTFILES_SAVE_LOCATION=$HOME/.dotfiles
-export NVM_DIR="$HOME/.nvm"
+
 export DENO_TLS_CA_STORE=system
 
 if [ -d "$HOME/bin" ] ; then
@@ -19,7 +20,17 @@ if [ -d "$HOME/.cargo/bin" ] ; then
     export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+if [ -d "$HOME/.pyenv" ] ; then
+    export PATH="$HOME/.pyenv/bin::$PATH"
+    eval "$(pyenv init --path)"
+    eval "$(pyenv virtualenv-init -)"
+fi
 
+if [ -d "$HOME/.nvm" ] ; then
+    export NVM_DIR="$HOME/.nvm"
+fi
+
+export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 
 # checks whether language pack is installed and exports
 # IS_INSTALLED_"LANGUAGE"=1

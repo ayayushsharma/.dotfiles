@@ -2,6 +2,14 @@ DISABLE_AUTO_UPDATE="true"
 DISABLE_MAGIC_FUNCTIONS="true"
 DISABLE_COMPFIX="true"
 
+# Smarter completion initialization
+autoload -Uz compinit
+if [ "$(date +'%j')" != "$(stat -f '%Sm' -t '%j' $ZDOTDIR/.zcompdump 2>/dev/null)" ]; then
+    compinit
+else
+    compinit -C -u
+fi
+
 export ZSH="$HOME/.oh-my-zsh"
 
 if [[ ! -f $ZSH/oh-my-zsh.sh ]]; then
@@ -20,9 +28,19 @@ if [[ ! -f $ZSH_CUSTOM/themes/spaceship.zsh-theme ]]; then
     echo "Preparing Spaceship --> Finished"
 fi
 
+if [[ ! -f ~/bin/direnv ]]; then
+    echo "Preparing direnv -> Started"
+    export bin_path=$HOME/bin
+    curl -sfL https://direnv.net/install.sh | bash
+    chmod +x ~/bin/direnv
+    unset bin_path
+    echo "Preparing direnv -> Finished"
+fi
+
 plugins=(
     vi-mode
     aws
+    direnv
 )
 
 ZSH_THEME="spaceship"

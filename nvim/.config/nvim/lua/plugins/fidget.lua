@@ -18,7 +18,7 @@ return {
                 notification_group = function(msg)
                     return msg.lsp_client.name
                 end,
-                ignore = {},
+                ignore = { "snyk_ls" },
 
                 display = {
                     render_limit = 5,
