@@ -1,0 +1,38 @@
+[includeIf "gitdir:~/projects/work/**"]
+    path = ~/.gitconfig-work
+
+[includeIf "gitdir:~/projects/personal/**"]
+    path = ~/.gitconfig-personal
+
+[includeIf "gitdir:~/.dotfiles/**"]
+    path = ~/.gitconfig-personal
+
+[core]
+    autocrlf = false
+    editor = nvim
+    whitespace = cr-at-eol
+	excludesFile = ~/.gitignore
+
+[credential]
+    helper = cache --timeout=144000
+
+[filter "lfs"]
+    required = true
+    clean = git-lfs clean -- %f
+    smudge = git-lfs smudge -- %f
+    process = git-lfs filter-process
+
+[credential "https://github.com"]
+    helper = !/usr/bin/gh auth git-credential
+
+[credential "https://gist.github.com"]
+    helper = !/usr/bin/gh auth git-credential
+
+[mergetool "vimdiff"]
+    layout = LOCAL,MERGED,REMOTE
+
+[push]
+    autoSetupRemote = true
+
+[alias]
+    count-lines = "! git log --author=\"$1\" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf \"added lines: %s, removed lines: %s, total lines: %s\\n\", add, subs, loc }' #"

@@ -9,6 +9,7 @@ echo "Creating Symlinks - started"
 cd ~/.dotfiles
 git pull --rebase
 
+stow git
 stow nvim
 stow zsh
 stow tmux
