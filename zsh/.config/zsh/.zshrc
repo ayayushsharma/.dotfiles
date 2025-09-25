@@ -28,19 +28,9 @@ if [[ ! -f $ZSH_CUSTOM/themes/spaceship.zsh-theme ]]; then
     echo "Preparing Spaceship --> Finished"
 fi
 
-if [[ ! -f ~/bin/direnv ]]; then
-    echo "Preparing direnv -> Started"
-    export bin_path=$HOME/bin
-    curl -sfL https://direnv.net/install.sh | bash
-    chmod +x ~/bin/direnv
-    unset bin_path
-    echo "Preparing direnv -> Finished"
-fi
-
 plugins=(
     vi-mode
     aws
-    direnv
 )
 
 ZSH_THEME="spaceship"
@@ -67,3 +57,10 @@ SAVEHIST=5000
 HISTDUP=erase
 
 bindkey -s ^f "tmux-sessionizer\n"
+eval "$($HOME/.local/bin/mise activate zsh)"
+
+#########################################
+# Aliases
+#########################################
+alias icat="kitten icat"
+alias vi="nvim"
