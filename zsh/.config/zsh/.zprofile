@@ -4,6 +4,8 @@ export PATH=$HOME/.deno/bin:$PATH
 export PATH=$HOME/scripts:$PATH
 export PATH=/opt/homebrew/opt/openjdk/bin:$PATH
 
+export PERSONAL_DOCKER_NETWORK="my-network"
+
 export DOTFILES_SAVE_LOCATION=$HOME/.dotfiles
 
 export DENO_TLS_CA_STORE=system
@@ -18,16 +20,6 @@ fi
 
 if [ -d "$HOME/.cargo/bin" ] ; then
     export PATH="$HOME/.cargo/bin:$PATH"
-fi
-
-if [ -d "$HOME/.pyenv" ] ; then
-    export PATH="$HOME/.pyenv/bin::$PATH"
-    eval "$(pyenv init --path)"
-    eval "$(pyenv virtualenv-init -)"
-fi
-
-if [ -d "$HOME/.nvm" ] ; then
-    export NVM_DIR="$HOME/.nvm"
 fi
 
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
