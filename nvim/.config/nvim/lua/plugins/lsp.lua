@@ -281,5 +281,13 @@ return {
                 vim.log.levels[level]
             )
         end
+
+        vim.keymap.set({ "n", "i" }, "<leader>ld", function()
+            if vim.diagnostic.is_enabled() then
+                vim.diagnostic.enable(false)
+                return
+            end
+            vim.diagnostic.enable()
+        end)
     end,
 }
