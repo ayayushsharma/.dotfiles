@@ -59,3 +59,5 @@ function language_detectors() {
 }
 
 language_detectors
+
+export FZF_DEFAULT_OPTS='--tmux 80%,80%'

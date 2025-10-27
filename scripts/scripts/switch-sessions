@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-session_name=$(tmux list-sessions -F '#{session_name}' | fzf)
+session_name=$(tmux list-sessions -F '#{session_name}' | fzf --tmux 55%,55%)
 
 if [ -n $session_name ]; then
     tmux switch-client -t $session_name

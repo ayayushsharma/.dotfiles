@@ -282,7 +282,7 @@ return {
             )
         end
 
-        vim.keymap.set({ "n", "i" }, "<leader>ld", function()
+        vim.keymap.set("n", "<leader>ld", function()
             if vim.diagnostic.is_enabled() then
                 vim.diagnostic.enable(false)
                 return

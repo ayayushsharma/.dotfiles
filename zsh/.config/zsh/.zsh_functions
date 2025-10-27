@@ -5,7 +5,9 @@ base_fpf() {
             echo "$HOME/scripts"
             echo "$HOME/.dotfiles"
             find ~/projects -maxdepth 2 -type d -print
-        } | fzf
+        } | awk -F/ '{print $NF "\t" $0}' \
+          | fzf --tmux 55%,55% --with-nth=1 --delimiter='\t' \
+          | awk -F'\t' '{print $2}'
     )
     echo "$dir_name"
 }
