@@ -4,7 +4,6 @@ if [ ! -d ~/.dotfiles ]; then
     echo "Cloning Dotfiles - finished"
 fi
 
-
 echo "Creating Symlinks - started"
 cd ~/.dotfiles
 git pull --rebase
