@@ -36,3 +36,12 @@
 
 [alias]
     count-lines = "! git log --author=\"$1\" --pretty=tformat: --numstat | awk '{ add += $1; subs += $2; loc += $1 - $2 } END { printf \"added lines: %s, removed lines: %s, total lines: %s\\n\", add, subs, loc }' #"
+
+[merge]
+	tool = nvimdiff
+
+[mergetool "nvimdiff"]
+    cmd = "nvim -d $LOCAL $REMOTE $MERGED -c 'wincmd J' -c 'set modifiable' -c 'set write' -c 'nnoremap co :diffget 2<cr>' -c 'nnoremap ct :diffget 3<cr>'"
+    layout = LOCAL,MERGED,REMOTE
+    prompt = false
+    keepBackup = false

@@ -56,6 +56,11 @@ function language_detectors() {
     if command -v deno >/dev/null 2>&1; then
         export IS_INSTALLED_DENO=1
     fi
+
+    # java
+    if command -v java >/dev/null 2>&1; then
+        export IS_INSTALLED_JAVA=1
+    fi
 }
 
 language_detectors

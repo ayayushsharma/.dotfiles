@@ -1,0 +1,20 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v2.3.0
+    hooks:
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
+
+  - repo: local
+    hooks:
+      - id: shfmt-local
+        name: shfmt (Local)
+        entry: shell-format.sh
+        language: script
+        types: [shell]
+
+  - repo: https://github.com/JohnnyMorganz/StyLua
+    rev: v2.3.1
+    hooks:
+      - id: stylua
