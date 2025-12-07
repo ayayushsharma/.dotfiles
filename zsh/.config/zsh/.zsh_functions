@@ -25,4 +25,7 @@ timezsh() {
   for i in $(seq 1 10); do /usr/bin/time $shell -i -c exit; done
 }
 
-alias lint_py="pylint -r y -s y \`git diff --name-only --staged --diff-filter=d | grep -E '\.py$' | tr '\n' ' '\`"
+aws-change-account() {
+    export AWS_PROFILE="$(aws configure list-profiles | fzf)"
+    echo "Switched to profile ""$AWS_PROFILE""."
+}
