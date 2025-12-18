@@ -1,7 +1,8 @@
 const apps = [
     { name: "Excalidraw", url: "http://draw.localhost" },
     { name: "Swagger Editor (Next Gen)", url: "http://swagger.localhost" },
-    { name: "Swagger Editor (Legacy)", url: "http://legacy.swagger.localhost" }
+    { name: "Swagger Editor (Legacy)", url: "http://legacy.swagger.localhost" },
+    { name: "DrawSQL", url: "http://sqldraw.localhost" },
 ];
 
 function fuzzyMatch(str, pattern) {

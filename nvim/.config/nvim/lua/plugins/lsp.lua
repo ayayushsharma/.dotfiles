@@ -87,18 +87,22 @@ end
 function SYNK_LS()
     local snyk_token = os.getenv("SNYK_TOKEN")
     local home = os.getenv("HOME")
-    if snyk_token then
-        require("lspconfig").snyk_ls.setup({
-            init_options = {
-                ["token"] = snyk_token,
-                ["authenticationMethod"] = "token",
-                ["activateSnykIac"] = "false",
-                ["trustedFolders"] = {
-                    home .. "/projects",
-                },
-            },
-        })
+    if not snyk_token then
+        return
     end
+    require("lspconfig").snyk_ls.setup({
+        init_options = {
+            ["token"] = snyk_token,
+            ["authenticationMethod"] = "token",
+            ["activateSnykIac"] = "false",
+            ["trustedFolders"] = {
+                home .. "/projects",
+                home .. "/todo",
+                home .. "/.dotfiles",
+                home .. "/go",
+            },
+        },
+    })
 end
 
 ---inits deno language server
