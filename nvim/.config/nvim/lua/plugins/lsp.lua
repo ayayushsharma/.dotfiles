@@ -48,6 +48,9 @@ function INSTALLED_LANGUAGES()
         table.insert(lsp_to_install, "snyk_ls")
     end
 
+    -- if lang_is_installed("java") then
+    --     table.insert(lsp_to_install, "rust_analyzer")
+    -- end
     return lsp_to_install
 end
 
@@ -90,17 +93,40 @@ function SYNK_LS()
     if not snyk_token then
         return
     end
+
+    local trusted_folders = {
+        home .. "/projects",
+        home .. "/todo",
+        home .. "/.dotfiles",
+        home .. "/go",
+        home .. "/.local",
+    }
+    local current_path = vim.fn.expand('%:p')
+
+    local do_not_start = true
+    for _, val in pairs(trusted_folders) do
+        local pos = string.find(current_path, val)
+        if pos == nil then
+            goto continue
+        end
+
+        if pos == 1 then
+            do_not_start = false
+        end
+
+        ::continue::
+    end
+
+    if do_not_start then
+        return
+    end
+
     require("lspconfig").snyk_ls.setup({
         init_options = {
             ["token"] = snyk_token,
             ["authenticationMethod"] = "token",
             ["activateSnykIac"] = "false",
-            ["trustedFolders"] = {
-                home .. "/projects",
-                home .. "/todo",
-                home .. "/.dotfiles",
-                home .. "/go",
-            },
+            ["trustedFolders"] = trusted_folders,
         },
     })
 end
