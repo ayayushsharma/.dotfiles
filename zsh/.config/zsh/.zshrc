@@ -31,6 +31,7 @@ fi
 plugins=(
     vi-mode
     aws
+    podman
 )
 
 ZSH_THEME="spaceship"
@@ -64,3 +65,5 @@ eval "$($HOME/.local/bin/mise activate zsh)"
 #########################################
 alias icat="kitten icat"
 alias vi="nvim"
+
+source <(fzf --zsh)
