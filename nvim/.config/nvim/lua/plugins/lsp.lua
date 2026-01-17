@@ -101,7 +101,7 @@ function SYNK_LS()
         home .. "/go",
         home .. "/.local",
     }
-    local current_path = vim.fn.expand('%:p')
+    local current_path = vim.fn.expand("%:p")
 
     local do_not_start = true
     for _, val in pairs(trusted_folders) do

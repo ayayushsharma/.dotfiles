@@ -7,9 +7,9 @@ if env_value == nil then
 end
 
 return {
-    'nvim-java/nvim-java',
+    "nvim-java/nvim-java",
     config = function()
-        require('java').setup()
-        vim.lsp.enable('jdtls')
+        require("java").setup()
+        vim.lsp.enable("jdtls")
     end,
 }
