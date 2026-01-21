@@ -13,5 +13,6 @@ stow nvim
 stow zsh
 stow tmux
 stow kitty
+stow karabiner
 stow scripts --no-folding
 echo "Creating Symlinks - finished"
