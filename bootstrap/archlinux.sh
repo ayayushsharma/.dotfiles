@@ -59,7 +59,18 @@ info "Updating System and Installing Dependencies - started"
 
 # Enable ParallelDownloads = 20
 sudo sed -i '/^[#[:space:]]*ParallelDownloads[[:space:]]*=.*/d' /etc/pacman.conf
-echo 'ParallelDownloads = 20' | sudo tee -a /etc/pacman.conf >/dev/null
+if grep -q '^\[options\]$' /etc/pacman.conf; then
+    sudo sed -i '/^\[options\]$/a ParallelDownloads = 20' /etc/pacman.conf
+else
+    tmpfile="$(mktemp)"
+    {
+        echo '[options]'
+        echo 'ParallelDownloads = 20'
+        cat /etc/pacman.conf
+    } > "$tmpfile"
+    sudo install -m 0644 "$tmpfile" /etc/pacman.conf
+    _cleanup_hooks+=("rm -f '"$tmpfile"'")
+fi
 
 declare -a dep_files=(
     "core.txt"
@@ -125,7 +136,7 @@ if ! grep -qxF "$zsh_path" /etc/shells; then
 fi
 current_shell="$(getent passwd "$USER" | cut -d: -f7)"
 if [[ "$(readlink -f "$current_shell")" != "$(readlink -f "$zsh_path")" ]]; then
-    sudo chsh -s "$zsh_path"
+    sudo chsh -s "$zsh_path" "$USER"
     info "Default shell changed to zsh. You may need to log out/in."
 else
     info "Zsh already the default shell."
@@ -180,7 +191,7 @@ ok "Installing AUR Dependencies - finished"
 
 # ---------- SDDM Configuration ----------
 info "Enabling SDDM to Start on Boot - started"
-if systemctl list-unit-files | grep -q '^sddm.service'; then
+if systemctl list-unit-files | grep 'sddm.service'; then
     if systemctl is-enabled --quiet sddm.service; then
         info "sddm.service already enabled"
     else
