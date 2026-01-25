@@ -125,7 +125,7 @@ if ! grep -qxF "$zsh_path" /etc/shells; then
 fi
 current_shell="$(getent passwd "$USER" | cut -d: -f7)"
 if [[ "$(readlink -f "$current_shell")" != "$(readlink -f "$zsh_path")" ]]; then
-    chsh -s "$zsh_path"
+    sudo chsh -s "$zsh_path"
     info "Default shell changed to zsh. You may need to log out/in."
 else
     info "Zsh already the default shell."
