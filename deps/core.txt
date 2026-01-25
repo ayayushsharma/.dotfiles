@@ -1,0 +1,11 @@
+base-devel
+btop
+fzf
+git
+git-lfs
+kitty
+less
+nvim
+stow
+tmux
+zsh

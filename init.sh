@@ -13,6 +13,7 @@ stow nvim
 stow zsh
 stow tmux
 stow kitty
+stow hyprland
 stow karabiner
 stow mise
 stow scripts --no-folding
