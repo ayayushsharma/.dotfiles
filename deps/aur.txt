@@ -1,3 +1,0 @@
-google-chrome
-vlc
-vlc-plugins-all

@@ -1,8 +1,12 @@
 blueman
 brightnessctl
+grim
 hyprland
 hyprpaper
 rofi-wayland
+qt5-wayland
+qt6-wayland
 sddm
+uwsm
 waybar
 wl-clipboard
