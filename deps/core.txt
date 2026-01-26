@@ -9,3 +9,5 @@ nvim
 stow
 tmux
 zsh
+zip
+unzip

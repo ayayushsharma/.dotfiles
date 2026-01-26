@@ -7,6 +7,9 @@
 [includeIf "gitdir:~/.dotfiles/**"]
     path = ~/.gitconfig-personal
 
+[includeIf "gitdir:~/**"]
+    path = ~/.gitconfig-personal
+
 [core]
     autocrlf = false
     editor = nvim
