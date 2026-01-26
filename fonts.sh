@@ -9,7 +9,11 @@ unzip /tmp/JetBrainsMono.zip -d /tmp/JetBrainsMono
 echo "Removing JetBrainsMono System Installation"
 rm /usr/share/fonts/JetBrainsMono -rf
 echo "Copying the new fonts to System Installation"
-cp /tmp/JetBrainsMono /usr/share/fonts/ -r
+
+installation_path="$HOME/.local/share/fonts/"
+echo "Installing fonts on '$installation_path'"
+mkdir -p "$installation_path"
+sudo cp /tmp/JetBrainsMono "$installation_path" -r
 
 echo "Caching All Fonts"
 fc-cache -f -v

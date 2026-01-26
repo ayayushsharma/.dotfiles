@@ -224,4 +224,8 @@ if [[ ! -f $sddm_file_path ]]; then
 fi
 ok "Setting Hyprland as Default Session for SDDM - finished"
 
+info "Installing Fonts - started"
+"$HOME/.dotfiles/fonts.sh" || true
+ok "Installing Fonts - finished"
+
 ok "Arch Linux Setup Script - finished successfully!"
