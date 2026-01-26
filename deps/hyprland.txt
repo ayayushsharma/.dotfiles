@@ -3,6 +3,7 @@ brightnessctl
 grim
 hyprland
 hyprpaper
+hyprpolkitagent
 rofi-wayland
 qt5-wayland
 qt6-wayland
