@@ -17,7 +17,6 @@ echo "Removing JetBrainsMono System Installation"
 rm /usr/share/fonts/JetBrainsMono -rf
 echo "Copying the new fonts to System Installation"
 
-
 echo "Installing fonts on '$installation_path'"
 mkdir -p "$installation_path"
 cp /tmp/JetBrainsMono "$installation_path" -r

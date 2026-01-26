@@ -67,7 +67,7 @@ else
         echo '[options]'
         echo 'ParallelDownloads = 20'
         cat /etc/pacman.conf
-    } > "$tmpfile"
+    } >"$tmpfile"
     sudo install -m 0644 "$tmpfile" /etc/pacman.conf
     _cleanup_hooks+=("rm -f '"$tmpfile"'")
 fi

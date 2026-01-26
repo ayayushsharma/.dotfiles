@@ -1,2 +1,6 @@
 [tools]
 shfmt = "latest"
+
+[tasks.sh-fmt]
+description = "Format shell scripts"
+run = "shfmt -i 4 --bn -ci -kp -w ."
