@@ -1,5 +1,5 @@
-[includeIf "gitdir:~/projects/work/**"]
-    path = ~/.gitconfig-work
+[includeIf "gitdir:~/**"]
+    path = ~/.gitconfig-personal
 
 [includeIf "gitdir:~/projects/personal/**"]
     path = ~/.gitconfig-personal
@@ -7,8 +7,8 @@
 [includeIf "gitdir:~/.dotfiles/**"]
     path = ~/.gitconfig-personal
 
-[includeIf "gitdir:~/**"]
-    path = ~/.gitconfig-personal
+[includeIf "gitdir:~/projects/work/**"]
+    path = ~/.gitconfig-work
 
 [core]
     autocrlf = false
