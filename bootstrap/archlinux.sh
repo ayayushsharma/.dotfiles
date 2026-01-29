@@ -92,9 +92,11 @@ sed -i '/^\s*$/d' "$tmp_deps"
 awk '!seen[$0]++' "$tmp_deps" >"${tmp_deps}.uniq"  && mv "${tmp_deps}.uniq" "$tmp_deps"
 
 if [[ -s "$tmp_deps" ]]; then
+    echo "Updating system:"
+    sudo pacman -Syu --noconfirm  # updating deps first
     echo "Installing the following packages using pacman:"
     cat "$tmp_deps"
-    sudo pacman -Syu --noconfirm --needed - <"$tmp_deps"
+    sudo pacman -S --verbose --noconfirm --needed - <"$tmp_deps"
 else
     info "No pacman packages found in deps."
 fi

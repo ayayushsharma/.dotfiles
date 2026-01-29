@@ -14,3 +14,9 @@ curl -fsSl https://raw.githubusercontent.com/ayayushsharma/.dotfiles/main/bootst
 # OR
 curl -fsSl https://ayayushsharma.github.io/.dotfiles/bootstrap/archlinux.sh | sh
 ```
+
+### Get USB Headphones to work
+
+```sh
+sudo modprobe snd_usb_audio
+```
