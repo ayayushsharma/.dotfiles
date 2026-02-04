@@ -4,4 +4,5 @@ idiomatic_version_file_enable_tools = ["python"]
 [tools]
 gh = "latest"
 go = "1.25"
+rg = "latest"
 uv = "latest"
