@@ -29,3 +29,13 @@ aws-change-account() {
     export AWS_PROFILE="$(aws configure list-profiles | fzf)"
     echo "Switched to profile ""$AWS_PROFILE""."
 }
+
+N() {
+    if [[ ! -d ~/todo ]]; then
+        mkdir ~/todo;
+        cd ~/todo;
+        touch index.norg
+    fi
+    cd ~/todo
+    nvim index.norg
+}
