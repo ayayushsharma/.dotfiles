@@ -39,3 +39,7 @@ N() {
     cd ~/todo
     nvim index.norg
 }
+
+git-clone-large-repo() {
+    git clone --filter=blob:none "$1"
+}
