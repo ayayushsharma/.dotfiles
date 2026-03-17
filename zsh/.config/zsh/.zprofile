@@ -22,6 +22,10 @@ if [ -d "$HOME/.cargo/bin" ] ; then
     export PATH="$HOME/.cargo/bin:$PATH"
 fi
 
+if [ -d "/opt/homebrew/bin" ]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+fi
+
 export CPPFLAGS="-I/opt/homebrew/opt/openjdk/include"
 
 # checks whether language pack is installed and exports
