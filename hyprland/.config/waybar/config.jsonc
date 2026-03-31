@@ -35,7 +35,8 @@
         "tooltip": false,
         "format": "",
         "on-click": "swaync-client -t -sw",
-        "escape": true
+        "escape": true,
+        "on-click-right": "rofi -show drun -i"
     },
     "clock": {
         "format": "{:%I:%M:%S %p} ",

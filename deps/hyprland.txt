@@ -2,7 +2,7 @@ blueman
 brightnessctl
 grim
 hyprland
-hyprpaper
+wpaperd
 hyprpolkitagent
 rofi-wayland
 qt5-wayland
@@ -12,3 +12,4 @@ uwsm
 waybar
 wl-clipboard
 xdg-desktop-portal-hyprland
+swaync
