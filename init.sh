@@ -16,6 +16,5 @@ stow kitty
 stow hyprland
 stow karabiner
 stow mise
-stow rofi
 stow scripts --no-folding
 echo "Creating Symlinks - finished"
