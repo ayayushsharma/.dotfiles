@@ -40,8 +40,8 @@
 
     "custom/menu": {
         "format": "",
-        "on-click": "rofi -show drun -i"
-        "tooltip": false;
+        "on-click": "rofi -show drun -i",
+        "tooltip": false
     },
 
     "clock": {
