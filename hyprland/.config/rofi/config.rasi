@@ -20,7 +20,7 @@ configuration {
     disable-history:     false;
     hide-scrollbar:      true;
     cycle:               false; /* Disable wrapping when scrolling */
-    click-to-exit:       true;
+    kb-cancel: [ Escape, MousePrimary ];
 
     filebrowser {
         directories-first: true;

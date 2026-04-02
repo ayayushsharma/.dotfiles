@@ -4,10 +4,9 @@
     "reload_style_on_change": true,
 
     "modules-left": [
+        "custom/menu",
         "custom/notification",
         "clock"
-        // "custom/pacman",
-        // "tray"
     ],
     "modules-center": [
         "hyprland/workspaces"
@@ -31,13 +30,20 @@
             "*": [ 1,2,3,4,5 ]
         }
     },
+
     "custom/notification": {
         "tooltip": false,
-        "format": "",
+        "format": "",
         "on-click": "swaync-client -t -sw",
-        "escape": true,
-        "on-click-right": "rofi -show drun -i"
+        "escape": true
     },
+
+    "custom/menu": {
+        "format": "",
+        "on-click": "rofi -show drun -i"
+        "tooltip": false;
+    },
+
     "clock": {
         "format": "{:%I:%M:%S %p} ",
         "interval": 1,   
@@ -52,6 +58,7 @@
             "on-click": "shift_up"
         }
     },
+
     "network": {
         "format-wifi": "",
         "format-ethernet":"",
@@ -61,18 +68,20 @@
         "tooltip-format-ethernet": "{ifname} 🖧 ",
         "on-click": "kitty nmtui"
     },
+
     "bluetooth": {
         "format-on": "󰂯",
         "format-off": "BT-off",
         "format-disabled": "󰂲",
         "format-connected-battery": "󰂯",
-        "format-alt": "{device_alias} Battery {device_battery_percentage}% 󰂯",
+        // "format-alt": "{device_alias} Battery {device_battery_percentage}% 󰂯",
         "tooltip-format": "{controller_alias}\t{controller_address}\n\n{num_connections} connected",
         "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{num_connections} connected\n\n{device_enumerate}",
         "tooltip-format-enumerate-connected": "{device_alias}\n{device_address}",
         "tooltip-format-enumerate-connected-battery": "{device_alias}\n{device_address}\n{device_battery_percentage}%",
-        "on-click-right": "blueman-manager",
-    }, 
+        "on-click": "blueman-manager",
+    },
+
     "battery": {
         "interval":30,
         "states": {
@@ -93,23 +102,17 @@
             "󰁹"
         ],
     },
-    // "custom/pacman": {
-    //     "format": "󰅢 {}",
-    //     "interval": 30,   
-    //     "exec": "checkupdates | wc -l",
-    //     "exec-if": "exit 0",
-    //     "on-click": "kitty sh -c 'yay -Syu; echo Done - Press enter to exit; read'; pkill -SIGRTMIN+8 waybar",
-    //     "signal": 8,
-    //     "tooltip": false,
-    // },
+
     "custom/expand": {
         "format": "",
         "tooltip": false
     },
+
     "custom/endpoint":{
         "format": "|",
         "tooltip": false
     },
+
     "group/expand": {
         "orientation": "horizontal",
         "drawer": {
@@ -126,34 +129,32 @@
             "custom/endpoint"
         ],
     },
+
     "wireplumber": {
-        "format": "{volume}% {icon}",
+        "format": "{icon}  {volume}% ",
         "format-muted": "",
         "on-click": "pwvucontrol",
         "format-icons": ["", "", ""]
     },
-    "custom/colorpicker": {
-        "format": "{}",
-        "return-type": "json",
-        "interval": "once",
-        "exec": "~/.config/waybar/scripts/colorpicker.sh -j",
-        "on-click": "~/.config/waybar/scripts/colorpicker.sh",
-        "signal": 1
-    },
+
     "cpu": {
         "format": "󰻠",
         "tooltip": true,
         "on-click": "kitty btop"
     },
+
     // "memory": {
     //     "format": ""
     // },
+
     "temperature": {
         "critical-threshold": 80,
         "format": "",
     },
+
     "tray": {
         "icon-size": 14,
         "spacing": 10
     },
+
 } 

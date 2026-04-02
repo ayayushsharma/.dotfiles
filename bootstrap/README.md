@@ -20,3 +20,10 @@ curl -fsSl https://ayayushsharma.github.io/.dotfiles/bootstrap/archlinux.sh | sh
 ```sh
 sudo modprobe snd_usb_audio
 ```
+
+### Changing Login Screen
+
+I like the Sakura theme
+```sh
+bash -c "$(curl -fsSL https://raw.githubusercontent.com/keyitdev/sddm-astronaut-theme/master/setup.sh)"
+```
