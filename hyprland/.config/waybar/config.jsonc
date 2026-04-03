@@ -5,7 +5,6 @@
 
     "modules-left": [
         "custom/menu",
-        "custom/notification",
         "clock"
     ],
     "modules-center": [
@@ -13,10 +12,13 @@
     ],
     "modules-right": [
         "group/expand",
+        "cpu",
+        "memory",
         "wireplumber",
         "bluetooth",
         "network",
-        "battery"
+        "battery",
+        "custom/notification"
     ],
 
     "hyprland/workspaces": {
@@ -123,29 +125,31 @@
         "modules": [
             "custom/expand",
             "custom/colorpicker",
-            "cpu",
-            // "memory",
             "temperature",
             "custom/endpoint"
         ],
     },
 
     "wireplumber": {
-        "format": "{icon}  {volume}% ",
+        "format": "{icon} {volume}% ",
         "format-muted": "",
         "on-click": "pwvucontrol",
         "format-icons": ["", "", ""]
     },
 
     "cpu": {
-        "format": "󰻠",
+        "interval": 2,
+        "format": " {usage:>2}%",
         "tooltip": true,
         "on-click": "kitty btop"
     },
 
-    // "memory": {
-    //     "format": ""
-    // },
+    "memory": {
+        "interval": 2,
+        "format": "  {used:0.1f}/{total:0.1f}G ",
+        "tooltip": true,
+        "on-click": "kitty btop"
+    },
 
     "temperature": {
         "critical-threshold": 80,
