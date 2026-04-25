@@ -73,7 +73,6 @@ return {
                     height = 0.5,
                     show_nu = true,
                     show_rnu = false,
-                    close_mappings = { "q", "Q" },
                 },
             },
             popup_ui = {
@@ -157,10 +156,6 @@ return {
             replace_received_testcases = false,
         })
 
-        vim.keymap.set({ "n" }, "<leader>ee", function()
-            vim.cmd(":CompetiTest run")
-        end)
-
         vim.keymap.set({ "n" }, "<leader>pp", function()
             vim.cmd(":CompetiTest receive problem")
         end)
@@ -171,6 +166,10 @@ return {
 
         vim.keymap.set({ "n" }, "<leader>cp", function()
             vim.cmd(":CompetiTest run")
+        end)
+
+        vim.keymap.set({ "n" }, "<leader>ee", function()
+            vim.cmd(":CompetiTest add_testcase")
         end)
     end,
 }
