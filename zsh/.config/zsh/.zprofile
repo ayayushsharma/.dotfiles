@@ -65,6 +65,11 @@ function language_detectors() {
     if command -v java >/dev/null 2>&1; then
         export IS_INSTALLED_JAVA=1
     fi
+
+    # zig 
+    if command -v zig >/dev/null 2>&1; then
+        export IS_INSTALLED_ZIG=1
+    fi
 }
 
 language_detectors
