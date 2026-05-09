@@ -175,5 +175,9 @@ return {
         vim.keymap.set({ "n" }, "<leader>et", function()
             vim.cmd(":CompetiTest edit_testcase")
         end)
+
+        vim.keymap.set({ "n" }, "<leader>ed", function()
+            vim.cmd(":CompetiTest delete_testcase")
+        end)
     end,
 }
