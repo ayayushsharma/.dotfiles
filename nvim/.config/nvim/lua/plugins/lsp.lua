@@ -44,6 +44,10 @@ function INSTALLED_LANGUAGES()
         table.insert(lsp_to_install, "rust_analyzer")
     end
 
+    if lang_is_installed("zig") then
+        table.insert(lsp_to_install, "zls")
+    end
+
     if os.getenv("SNYK_TOKEN") ~= nil then
         table.insert(lsp_to_install, "snyk_ls")
     end
