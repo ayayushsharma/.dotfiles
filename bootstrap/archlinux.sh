@@ -230,4 +230,13 @@ info "Installing Fonts - started"
 "$HOME/.dotfiles/fonts.sh" || true
 ok "Installing Fonts - finished"
 
+info "Setting up dolphin file manager - started"
+mkdir $HOME/.config/menus/
+curl -L https://raw.githubusercontent.com/KDE/plasma-workspace/master/menu/desktop/plasma-applications.menu \
+    -o $HOME/.config/menus/applications.menu \
+    || echo 'Dolphin setup failed' \
+    || true
+ok "Installing Fonts - finished"
+
+
 ok "Arch Linux Setup Script - finished successfully!"

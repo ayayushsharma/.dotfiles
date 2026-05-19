@@ -2,16 +2,10 @@
 
 ## Run Bootstrap
 
-[Bootstrap](./bootstrap/) OR
+[Bootstrap](./bootstrap/) OR run a manual install using dotfiles
 
 ```sh
 git clone https://github.com/ayayushsharma/.dotfiles ~/.dotfiles
-```
-
-## Install fonts
-
-```sh
-sudo $DOTFILES_SAVE_LOCATION/fonts.sh
 ```
 
 ## For Basic Usage
@@ -25,5 +19,5 @@ curl -fsSL https://raw.githubusercontent.com/ayayushsharma/.dotfiles/main/core_d
 Setup configs with
 
 ```sh
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/ayayushsharma/.dotfiles/main/init.sh)"
+curl -fsSL https://raw.githubusercontent.com/ayayushsharma/.dotfiles/main/init.sh | sh
 ```

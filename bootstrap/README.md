@@ -15,6 +15,12 @@ curl -fsSl https://conf.sharmaayush.com/bootstrap/archlinux.sh | sh
 curl -fsSl https://raw.githubusercontent.com/ayayushsharma/.dotfiles/main/bootstrap/archlinux.sh | sh
 ```
 
+### Install fonts
+
+```sh
+sudo $DOTFILES_SAVE_LOCATION/fonts.sh
+```
+
 ### Get USB Headphones to work
 
 ```sh
@@ -26,4 +32,12 @@ sudo modprobe snd_usb_audio
 I like the Sakura theme
 ```sh
 bash -c "$(curl -fsSL https://raw.githubusercontent.com/keyitdev/sddm-astronaut-theme/master/setup.sh)"
+```
+
+### Picking default app for opening files in Dolphin does not register it
+
+```sh
+mkdir $HOME/.config/menus/
+curl -L https://raw.githubusercontent.com/KDE/plasma-workspace/master/menu/desktop/plasma-applications.menu \
+    -o $HOME/.config/menus/applications.menu \
 ```
