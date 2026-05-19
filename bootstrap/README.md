@@ -39,5 +39,5 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/keyitdev/sddm-astronaut-
 ```sh
 mkdir $HOME/.config/menus/
 curl -L https://raw.githubusercontent.com/KDE/plasma-workspace/master/menu/desktop/plasma-applications.menu \
-    -o $HOME/.config/menus/applications.menu \
+    -o $HOME/.config/menus/applications.menu
 ```
