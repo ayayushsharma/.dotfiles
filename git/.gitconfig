@@ -50,4 +50,7 @@
     keepBackup = false
 
 [safe]
-	directory = *
+    directory = *
+
+[pull]
+	ff = only
