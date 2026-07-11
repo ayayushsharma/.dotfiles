@@ -6,6 +6,8 @@ return {
         local env_value = os.getenv(env_var)
         if env_value == nil then
             return
+        else
+            return
         end
         require("java").setup({
             jdk = { auto_install = false },

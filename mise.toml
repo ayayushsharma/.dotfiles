@@ -1,5 +1,6 @@
 [tools]
 shfmt = "latest"
+stylua = "latest"
 
 [tasks.sh-fmt]
 description = "Format shell scripts"
