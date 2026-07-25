@@ -41,3 +41,10 @@ mkdir $HOME/.config/menus/
 curl -L https://raw.githubusercontent.com/KDE/plasma-workspace/master/menu/desktop/plasma-applications.menu \
     -o $HOME/.config/menus/applications.menu
 ```
+
+### Fix Blender on Hyprland
+
+```sh
+sudo sed -i 's|Exec=blender %f|Exec=env WAYLAND_DISPLAY= blender %f|g' \
+    /usr/share/applications/blender.desktop
+```

@@ -304,7 +304,9 @@ hl.bind(
 --------------------------------
 ---- WINDOWS AND WORKSPACES ----
 --------------------------------
-hl.workspace_rule({ workspace = "r[1-5]", persistent = true })
+for i = 1, 5, 1 do
+    hl.workspace_rule({ workspace = tostring(i), persistent = true })
+end
 
 hl.window_rule({
     name = "suppress-maximize-events",

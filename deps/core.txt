@@ -12,3 +12,4 @@ zsh
 zip
 unzip
 firefox
+blender
