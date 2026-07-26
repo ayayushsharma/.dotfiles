@@ -12,4 +12,5 @@ zsh
 zip
 unzip
 firefox
+dolphin
 blender
