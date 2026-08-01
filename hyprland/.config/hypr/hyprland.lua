@@ -165,7 +165,7 @@ hl.config({
     misc = {
         force_default_wallpaper = 0,
         disable_hyprland_logo = true,
-        close_special_on_empty = false,
+        close_special_on_empty = true,
     },
 })
 
@@ -215,7 +215,6 @@ hl.device({
 ---------------------
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. " + K", hl.dsp.exec_cmd(terminal))
 hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("firefox"))
 hl.bind(
     mainMod .. " + W",
@@ -244,7 +243,6 @@ for i = 1, 10 do
 end
 
 hl.bind(mainMod .. " + s", hl.dsp.window.pin())
-hl.bind(mainMod .. " + SHIFT + f", hl.dsp.window.fullscreen())
 
 hl.bind(mainMod .. " + mouse_down", hl.dsp.focus({ workspace = "e+1" }))
 hl.bind(mainMod .. " + mouse_up", hl.dsp.focus({ workspace = "e-1" }))
@@ -336,14 +334,58 @@ hl.window_rule({
     move = "60%-w-10 60%-w-10",
 })
 
+local pip_window_width = "(monitor_w * 0.30)"
+local pip_window_height = "(monitor_h * 0.30)"
+local pip_regex = "[Pp]icture.?[Ii]n.?[Pp]icture"
+
 hl.window_rule({
     name = "generic-pip",
-    match = { title = "^(Picture in picture)$" },
+    match = { title = pip_regex },
     float = true,
     pin = true,
-    size = "30% 30%",
-    move = "70% 100%",
+    size = { pip_window_width, pip_window_height },
+    move = {
+        "monitor_w - " .. pip_window_width,
+        "monitor_h - " .. pip_window_height,
+    },
 })
+
+hl.bind(mainMod .. "+ SHIFT + W", function()
+    local win = hl.get_active_window()
+    if not win then return end
+
+    local addr = "address:" .. win.address
+    local title = tostring(win.title or ""):lower()
+    local is_pip = string.find(title, "picture") ~= nil
+
+    if not is_pip then
+        -- --- NORMAL WINDOW LOGIC ---
+        -- Explicitly define mode as "fullscreen" to ensure the toggle triggers correctly.
+        -- We target by address to ensure focus doesn't jitter during the call.
+        hl.dispatch(hl.dsp.window.fullscreen({
+            mode = "fullscreen",
+            action = "toggle",
+            window = addr
+        }))
+        return
+    end
+
+    local ws_name = (win.workspace and win.workspace.name) or ""
+    local is_in_special = string.find(ws_name, "special") ~= nil
+    local is_fullscreen = (win.fullscreen ~= 0)
+
+    if is_in_special or is_fullscreen then
+        -- REVERT: Exit fullscreen, move back to current workspace, and RE-PIN
+        hl.dispatch(hl.dsp.window.fullscreen({ action = "unset", window = addr }))
+        hl.dispatch(hl.dsp.window.move({ workspace = "e+0", window = addr }))
+        hl.dispatch(hl.dsp.window.pin({ action = "on", window = addr }))
+    else
+        -- FULLSCREEN: Un-pin first (mandatory), move to special, and fullscreen
+        hl.dispatch(hl.dsp.window.pin({ action = "off", window = addr }))
+        hl.dispatch(hl.dsp.window.move({ workspace = "special:pip", window = addr }))
+        hl.dispatch(hl.dsp.window.fullscreen({ action = "set", window = addr }))
+    end
+end)
 
 hl.window_rule({
     name = "kitty-opacity",
