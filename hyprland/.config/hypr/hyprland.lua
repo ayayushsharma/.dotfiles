@@ -215,7 +215,7 @@ hl.device({
 ---------------------
 hl.bind(mainMod .. " + Q", hl.dsp.window.close())
 hl.bind(mainMod .. " + X", hl.dsp.exec_cmd(terminal))
-hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("firefox"))
+hl.bind(mainMod .. " + F", hl.dsp.exec_cmd("brave"))
 hl.bind(
     mainMod .. " + W",
     hl.dsp.exec_cmd("google-chrome-stable --enable-features=TouchpadOverscrollHistoryNavigation")
