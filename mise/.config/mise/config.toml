@@ -1,5 +1,6 @@
 [settings]
 idiomatic_version_file_enable_tools = ["python"]
+github_attestations = false
 
 [tools]
 act = "latest"
@@ -9,5 +10,13 @@ go = "1.25"
 jq = "latest"
 opencode = "latest"
 rg = "latest"
+pre-commit = "latest"
+ruff = "latest"
+shfmt = "latest"
 uv = "latest"
 zig = "latest"
+node = "latest"
+terraform = "latest"
+ollama = "latest"
+docker-compose = "latest"
+bats = "latest"
