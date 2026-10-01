@@ -1094,6 +1094,7 @@
                     },
                     {
                         "description": "PC-Style Lock Screen",
+                        "enabled": false,
                         "manipulators": [
                             {
                                 "conditions": [
