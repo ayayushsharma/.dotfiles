@@ -58,7 +58,11 @@ SAVEHIST=5000
 HISTDUP=erase
 
 bindkey -s ^f "tmux-sessionizer\n"
-eval "$($HOME/.local/bin/mise activate zsh)"
+if command -v mise >/dev/null 2>&1; then
+    eval "$(mise activate zsh)"
+else
+    eval "$($HOME/.local/bin/mise activate zsh)"
+fi
 
 #########################################
 # Aliases
