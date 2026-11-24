@@ -7,7 +7,22 @@ SPACESHIP_VENV_GENERIC_NAMES=(virtualenv)
 SPACESHIP_PROMPT_ADD_NEWLINE=false
 SPACESHIP_AWS_SYMBOL=""
 
+SPACESHIP_ENVIRONMENT_PREFIX=""
+SPACESHIP_ENVIRONMENT_SUFFIX=" "
+SPACESHIP_ENVIRONMENT_COLOR="green"
+
+# Custom section: show [$SPACESHIP_ENVIRONMENT] in green when set
+spaceship_environment() {
+  [[ -n "$SPACESHIP_ENVIRONMENT" ]] || return
+  spaceship::section::v4 \
+    --color "$SPACESHIP_ENVIRONMENT_COLOR" \
+    --prefix "$SPACESHIP_ENVIRONMENT_PREFIX" \
+    --suffix "$SPACESHIP_ENVIRONMENT_SUFFIX" \
+    "[$SPACESHIP_ENVIRONMENT]"
+}
+
 SPACESHIP_PROMPT_ORDER=(
+    environment
     venv
     conda
     time
