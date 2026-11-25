@@ -16,5 +16,8 @@ stow kitty
 stow hyprland
 stow karabiner
 stow mise
+if [ ! -f $HOME/.config/mise/config.toml ]; then
+    cp ./mise/.config/mise/config_core.toml ./mise/.config/mise/config.toml
+fi
 stow scripts --no-folding
 echo "Creating Symlinks - finished"
